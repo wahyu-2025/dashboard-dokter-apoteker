@@ -52,7 +52,7 @@ const ApotekerDashboard: React.FC = () => {
                 💊 <span className="font-semibold text-green-600">Resep:</span> {item.resep}
               </p>
 
-              {/* 📌 Status sekarang */}
+              {/* Status sekarang */}
               <p className="mt-2">
                 📌 Status: <span className="font-semibold">{item.status}</span>
               </p>
