@@ -37,10 +37,10 @@ const LaporanKinerja = () => {
 
   return (
     <div className="p-6 max-w-6xl mx-auto space-y-8">
-      <h1 className="text-2xl font-bold text-center">📊 Laporan Kinerja</h1>
+      <h1 className="text-2xl font-bold text-center text-sky-900">📊 Laporan Kinerja</h1>
 
       {/* Statistik Dokter */}
-      <div className="bg-white rounded-xl shadow p-6">
+      <div className="bg-white rounded-xl shadow-xl p-6 outline outline-sky-100">
         <h2 className="text-xl font-semibold mb-4">👨‍⚕️ Dokter</h2>
         <p>Total Pasien: <span className="font-bold">{jumlahPasien}</span></p>
 
@@ -58,7 +58,7 @@ const LaporanKinerja = () => {
       </div>
 
       {/* Statistik Apoteker */}
-      <div className="bg-white rounded-xl shadow p-6">
+      <div className="bg-white rounded-xl shadow-xl p-6 outline outline-sky-100">
         <h2 className="text-xl font-semibold mb-4">💊 Apoteker</h2>
         <p>Resep Selesai: <span className="font-bold">{jumlahSelesai}</span></p>
 

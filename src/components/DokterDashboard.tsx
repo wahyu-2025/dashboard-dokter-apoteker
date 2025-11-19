@@ -54,64 +54,73 @@ const DokterDashboard = () => {
 
   return (
     <>
-      <div className="p-6 space-y-6">
-        <div className="text-center">
-          <h1 className="text-xl font-bold">Dashboard Dokter</h1>
-          <p>Pilih pasien lalu isi diagnosa & resep obat.</p>
-        </div>
+      <div className="allComponentWrapper flex justify-center">
 
-        <div className="max-w-3xl mx-auto">
-          <button className="cursor-pointer bg-blue-400 p-2 rounded" onClick={handleOpenPasienList}>
-            List Pasien
-          </button>
-        </div>
 
-        {/* Dropdown hanya pasien yang belum didiagnosa */}
-        <div className="max-w-3xl mx-auto">
-          <label className="block text-sm font-semibold">Pilih Pasien</label>
-          <select value={selectedPasien ?? ""} onChange={(e) => setSelectedPasien(e.target.value ? Number(e.target.value) : null)} className="border px-2 py-1 rounded w-full">
-            <option value="">-- Pilih Pasien --</option>
-            {pasienBelum.map((p, i) => (
-              <option key={i} value={pasienDataList.indexOf(p)}>
-                {p.nama} ({p.umur} th)
-              </option>
-            ))}
-          </select>
-        </div>
+        <div className="p-6 space-y-6">
+          <div className="formDokterCard bg-white-100 min-w-3xl max-w-3xl mr-15 pt-5 pb-1 shadow-xl mt-15 outline outline-sky-200 rounded-md">
+            <div className="formDokterHeader mb-3">
+              <h1 className="text-xl font-bold mb-2 text-center text-sky-900">Form Dokter</h1>
+              <p className="text-center text-xs italic">Pilih pasien lalu isi diagnosis dan resep obat.</p>
+            </div>
 
-        {/* Form Diagnosa */}
-        <div className="p-6 space-y-4 max-w-3xl mx-auto border rounded">
-          <div className="grid grid-cols-[120px_1fr] items-center gap-4">
-            <label className="text-sm text-gray-700 text-right">
-              <span className="text-red-500">*</span> Nama Penyakit
-            </label>
-            <input value={formData.penyakit ?? ""} onChange={(e) => handleInputChange("penyakit", e.target.value)} className="h-9 border border-gray-300 px-2 rounded" />
+            <hr className="w-full" />
+
+            <div className="formDokterBody px-4 mb-4 mt-3">
+              <button onClick={handleOpenPasienList} className="inline-flex items-center justify-center gap-2 rounded bg-black px-4 py-2 text-sm/6 font-semibold text-white hover:bg-sky-800 dark:bg-sky-700 dark:hover:bg-sky-600 cursor-pointer">
+                Lihat daftar pasien
+              </button>
+
+              {/* Dropdown hanya pasien yang belum didiagnosis */}
+              <div className="max-w-3xl mx-auto my-3">
+                <label className="block text-sm font-semibold">Pilih Pasien</label>
+                <select value={selectedPasien ?? ""} onChange={(e) => setSelectedPasien(e.target.value ? Number(e.target.value) : null)} className="border px-2 py-1 rounded w-full">
+                  <option value="">-- Pilih Pasien --</option>
+                  {pasienBelum.map((p, i) => (
+                    <option key={i} value={pasienDataList.indexOf(p)}>
+                      {p.nama} ({p.umur} th)
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Form Diagnosis */}
+              <div className="p-6 space-y-4 max-w-3xl mx-auto outline outline-gray-400 rounded mb-3">
+                <div className="grid grid-cols-[120px_1fr] items-center gap-4">
+                  <label className="text-sm text-gray-700 text-right">
+                    <span className="text-red-500">*</span> Nama Penyakit
+                  </label>
+                  <input value={formData.penyakit ?? ""} onChange={(e) => handleInputChange("penyakit", e.target.value)} className="h-9 border border-gray-300 px-2 rounded" />
+                </div>
+
+                <div className="grid grid-cols-[120px_1fr] items-center gap-4">
+                  <label className="text-sm text-gray-700 text-right">
+                    <span className="text-red-500">*</span> Gejala
+                  </label>
+                  <input value={formData.gejala ?? ""} onChange={(e) => handleInputChange("gejala", e.target.value)} className="h-9 border border-gray-300 px-2 rounded" />
+                </div>
+
+                <div className="grid grid-cols-[120px_1fr] items-center gap-4">
+                  <label className="text-sm text-gray-700 text-right">
+                    <span className="text-red-500">*</span> Resep
+                  </label>
+                  <textarea value={formData.resep ?? ""} onChange={(e) => handleInputChange("resep", e.target.value)} className="border border-gray-300 px-2 rounded resize-y min-h-[80px]" />
+                </div>
+
+                <div className="flex justify-end">
+                  <button onClick={handleSave} disabled={selectedPasien === null} className={`px-4 py-2 rounded cursor-pointer ${selectedPasien === null ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 text-white"}`}>
+                    Simpan
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div className="grid grid-cols-[120px_1fr] items-center gap-4">
-            <label className="text-sm text-gray-700 text-right">
-              <span className="text-red-500">*</span> Gejala
-            </label>
-            <input value={formData.gejala ?? ""} onChange={(e) => handleInputChange("gejala", e.target.value)} className="h-9 border border-gray-300 px-2 rounded" />
-          </div>
-
-          <div className="grid grid-cols-[120px_1fr] items-center gap-4">
-            <label className="text-sm text-gray-700 text-right">
-              <span className="text-red-500">*</span> Resep
-            </label>
-            <textarea value={formData.resep ?? ""} onChange={(e) => handleInputChange("resep", e.target.value)} className="border border-gray-300 px-2 rounded resize-y min-h-[80px]" />
-          </div>
-
-          <div className="flex justify-end">
-            <button onClick={handleSave} disabled={selectedPasien === null} className={`px-4 py-2 rounded cursor-pointer ${selectedPasien === null ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 text-white"}`}>
-              Simpan
-            </button>
-          </div>
         </div>
+        {/* Komponen PasienList */}
+        <PasienList isOpen={showPasienList} onClose={() => setShowPasienList(false)} onDelete={deletePasien} pasienData={pasienDataList} onSelect={(i) => setSelectedPasien(i)} selectedIndex={selectedPasien} />
       </div>
-      {/* Komponen PasienList */}
-      <PasienList isOpen={showPasienList} onClose={() => setShowPasienList(false)} onDelete={deletePasien} pasienData={pasienDataList} onSelect={(i) => setSelectedPasien(i)} selectedIndex={selectedPasien} />
     </>
+
   );
 };
 

@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.compWrapper{
+    height: calc(100vh - (88px + 60px));
+}

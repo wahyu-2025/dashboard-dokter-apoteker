@@ -1,11 +1,9 @@
 const Footer = () => {
   return (
-    <div className="navbar py-5 px-10 flex items-center justify-between bg-blue-400">
-      <div className="logo">
-        <h1 className="text-sm">
-          <a href="/">2025@ Made by kelompok 3</a>
+    <div className="navbar py-5 px-10 flex items-center justify-center bg-blue-400 ">
+      <h1 className="text-center text-sm">
+          <a href="/" className="text-center text-cyan-100">Made with ❤️ by Kelompok 3 (&copy; 2025)</a>
         </h1>
-      </div>
     </div>
   );
 };

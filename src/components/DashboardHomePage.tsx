@@ -1,25 +1,33 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import MedicineVisual from  "../undraw_medicine_hqqg_theme.svg"
 
-interface MenuItem {
-  privName: string;
-  path: string;
-  title: string;
-  description: string;
-}
+// interface MenuItem {
+//   privName: string;
+//   path: string;
+//   title: string;
+//   description: string;
+// }
 
 const DashboardHomePage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const data: MenuItem[] = [
-    { privName: "Pasien", path: "/pasien", title: "Pasien", description: "Lorem Ipsum" },
-    { privName: "Dokter", path: "/dokter", title: "Dokter", description: "Lorem Ipsum" },
-    { privName: "Apoteker", path: "/apoteker", title: "Apoteker", description: "Lorem Ipsum" },
-    { privName: "Laporan", path: "/laporan", title: "Laporan Kinerja", description: "Lorem Ipsum" },
-  ];
+  // const data: MenuItem[] = [
+  //   { privName: "Pasien", path: "/pasien", title: "Pasien", description: "Lorem Ipsum" },
+  //   { privName: "Dokter", path: "/dokter", title: "Dokter", description: "Lorem Ipsum" },
+  //   { privName: "Apoteker", path: "/apoteker", title: "Apoteker", description: "Lorem Ipsum" },
+  //   { privName: "Laporan", path: "/laporan", title: "Laporan Kinerja", description: "Lorem Ipsum" },
+  // ];
 
   return (
     <>
-      <div className="py-10">
+    <div className="compWrapper w-full flex justify-center item-center">
+      <img src={MedicineVisual} alt="" className="w-100"/>
+    </div>
+    {/* <div className="imgWrapper flex justify-center item-center w-full h-full">
+      <img src={MedicineVisual} alt="" className="w-100"/>
+    </div> */}
+
+      {/* <div className="py-10">
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-y-6 gap-x-20">
           {data.map((item) => (
             <div key={item.privName} className="bg-white p-6 rounded-xl shadow-sm flex items-start gap-4 hover:shadow-md transition cursor-pointer" onClick={() => navigate(item.path)}>
@@ -36,7 +44,7 @@ const DashboardHomePage = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

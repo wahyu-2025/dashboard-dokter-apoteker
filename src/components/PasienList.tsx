@@ -36,13 +36,13 @@ const PasienList: React.FC<PasienListProps> = ({ pasienData, onSelect, selectedI
               </p>
 
               <div className="flex justify-end">
-                <button className="cursor-pointer bg-blue-400 rounded p-2 text-sm" onClick={() =>onDelete(i)}>Hapus</button>
+                <button className="cursor-pointer bg-blue-400 text-white rounded p-2 text-sm" onClick={() =>onDelete(i)}>Hapus</button>
               </div>
             </li>
           ))}
         </ul>
         <div className="flex justify-end pt-3">
-          <button className="bg-blue-400 p-2 cursor-pointer rounded" onClick={onClose}>
+          <button className="bg-blue-400 text-white p-2 cursor-pointer rounded" onClick={onClose}>
             Tutup
           </button>
         </div>
