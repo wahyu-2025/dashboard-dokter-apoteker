@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, type Dispatch, type SetStateAction } from "react";
 import type { PasienFormData } from "../PasienDashboard";
 
 export interface DokterFormData {
@@ -10,12 +10,13 @@ export interface DokterFormData {
 }
 
 interface DokterContextType {
+  loading: boolean;
+  setLoading: Dispatch<SetStateAction<boolean>>;
   dokterDataList: DokterFormData[];
   pasienDataList: PasienFormData[];
   addData: (data: DokterFormData) => void;
   deleteData: (index: number) => void;
   updateStatus: (index: number, newStatus: "Menunggu" | "Diproses" | "Selesai") => void;
-
   addPasien: (data: PasienFormData) => void;
   deletePasien: (index: number) => void;
   updatePasienStatus: (index: number, newStatus: "Menunggu Dokter" | "Sudah Didiagnosa" | "Selesai") => void;
@@ -27,6 +28,7 @@ const STORAGE_KEY_DOKTER = "dokter-data-list";
 const STORAGE_KEY_PASIEN = "pasien-data-list";
 
 const DokterContextProvider = ({ children }: { children: React.ReactNode }) => {
+  const [loading, setLoading] = useState(false);
   // Dokter data
   const [dokterDataList, setDokterDataList] = useState<DokterFormData[]>(() => {
     const saved = localStorage.getItem(STORAGE_KEY_DOKTER);
@@ -58,17 +60,17 @@ const DokterContextProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const updateStatus = (index: number, newStatus: "Menunggu" | "Diproses" | "Selesai") => {
-    setDokterDataList((prev) => {
-      const updated = [...prev];
-      if (updated[index]) {
-        updated[index].status = newStatus;
-        updated[index].history.push({
-          status: newStatus,
-          timestamp: new Date().toISOString(),
-        });
-      }
-      return updated;
-    });
+    setDokterDataList((prev) =>
+      prev.map((item, i) =>
+        i === index
+          ? {
+              ...item,
+              status: newStatus,
+              history: [...item.history, { status: newStatus, timestamp: new Date().toISOString() }],
+            }
+          : item
+      )
+    );
   };
 
   // Pasien
@@ -97,6 +99,8 @@ const DokterContextProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <DokterContext.Provider
       value={{
+        loading,
+        setLoading,
         dokterDataList,
         pasienDataList,
         addData,
