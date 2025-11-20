@@ -21,7 +21,7 @@ const DashboardHomePage = () => {
   const data: MenuItem[] = [
     { privName: "Pasien", path: "/pasien", title: "Pasien", description: "Form pengisian data identitas dan informasi medis pasien.", icon: <BsPeopleFill /> },
     { privName: "Dokter", path: "/dokter", title: "Dokter", description: "Form pencatatan hasil pemeriksaan serta diagnosis pasien.", icon: <FaUserDoctor /> },
-    { privName: "Apoteker", path: "/apoteker", title: "Apoteker", description: "Form Pengelolaan obat dan layanan farmasi.", icon: <FaBriefcaseMedical /> },
+    { privName: "Apoteker", path: "/apoteker", title: "Apoteker", description: "Pengelolaan obat dan layanan farmasi.", icon: <FaBriefcaseMedical /> },
     { privName: "Laporan", path: "/laporan", title: "Laporan Kinerja", description: "Laporan jumlah pasien, penyakit terbanyak dan jumlah distribusi obat.", icon: <TbReportAnalytics /> },
   ];
 
