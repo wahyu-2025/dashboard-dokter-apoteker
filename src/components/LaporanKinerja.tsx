@@ -52,6 +52,7 @@ const LaporanKinerja = () => {
   const rataRataPelayanan = waktuPelayananData.length > 0 ? Number((totalTime / waktuPelayananData.length).toFixed(2)) : 0;
 
   const getServiceRating = (avg: number) => {
+    if (avg === 0) return "-";
     if (avg <= 5) return "Sangat Baik";
     if (avg <= 10) return "Baik";
     if (avg <= 15) return "Cukup";
